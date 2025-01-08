@@ -48,7 +48,7 @@ export const HeroSection = () => {
       </div>
       <div className="container">
         <div className="flex flex-col items-center">
-          <Image src={memojiImage} className="size-[100px]" alt="Pessoa atrás de um notebook" />
+          <Image src={memojiImage} className="size-[150px]" alt="Pessoa atrás de um notebook" />
           <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
             <div className="bg-green-500 size-2.5 rounded-full "></div>
             <div className="text-sm font-medium">Disponível para novos projetos</div>

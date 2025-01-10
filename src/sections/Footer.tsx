@@ -12,6 +12,9 @@ const footerLinks =  [
   {
     title: 'LinkedIn',
     href: 'https://www.linkedin.com/in/fernando-zimmermann-maciel-917a88198/',
+  },{
+    title: 'GitHub',
+    href: 'https://github.com/FernandoZMaciel',
   },
 ]
 

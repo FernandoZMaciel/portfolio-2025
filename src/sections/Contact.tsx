@@ -18,10 +18,10 @@ export const ContactSection = () => {
             </p>
             </div>
             <div>
-              <button className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 w-max border border-gray-900">
+              <a target="blank" href="https://api.whatsapp.com/send?phone=5547996697380&text=Pronto%20para%20dar%20vida%20ao%20seu%20projeto?%20Vamos%20nos%20conectar%20e%20alinhar%20como%20posso%20te%20ajudar%20a%20construir%20seus%20objetivos." className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 w-max border border-gray-900">
                 <span className="font-semibold">Entrar em Contato</span>
                 <ArrowUpRightIcon  className="size-4"/>
-              </button>
+              </a>
             </div>
           </div>
         </div>

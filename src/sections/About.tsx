@@ -1,21 +1,39 @@
+"use client";
+
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
-import bookImage from "@/assets/images/book-cover.png";
+import pragmaticProgrammerCover from "@/assets/images/PragmaticProgrammer.png";
+import cleanCodeCover from "@/assets/images/cleanCode.png";
+import scienceComputation from "@/assets/images/ComputerScience.png"
 import Image from "next/image";
-import JavascriptIcon from "@/assets/icons/square-js.svg";
 import smileMemoji from "@/assets/images/memoji-smile.png";
 import mapImage from "@/assets/images/map.png";
 import { CardHeader } from "@/components/CardHeader";
 import { ToolboxItems } from "@/components/ToolboxItems";
+import JavascriptIcon from "@/assets/icons/square-js.svg";
+import GitHubIcon from "@/assets/icons/github.svg";
+import HTMLIcon from "@/assets/icons/html5.svg";
+import JavaIcon from "@/assets/icons/java.svg";
+import SpringbootIcon from "@/assets/icons/spring-boot.svg";
+import TailwindIcon from "@/assets/icons/tailwindCss.svg";
+import SQLIcon from "@/assets/icons/sql.svg";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+
+const images = [
+   pragmaticProgrammerCover,
+   cleanCodeCover, 
+   scienceComputation
+];
 
 const toolboxItems = [
  {
   title: 'Java',
-  iconType: JavascriptIcon,
+  iconType: JavaIcon,
  },
  {
   title: 'SpringBoot',
-  iconType: JavascriptIcon,
+  iconType: SpringbootIcon,
  },
  {
   title: 'JavaScript',
@@ -23,15 +41,19 @@ const toolboxItems = [
  },
  {
   title: 'HTML5',
-  iconType: JavascriptIcon,
+  iconType: HTMLIcon,
  },
  {
   title: 'TailwindCSS',
-  iconType: JavascriptIcon,
+  iconType: TailwindIcon,
  },
  {
   title: 'Github',
-  iconType: JavascriptIcon,
+  iconType: GitHubIcon,
+ },
+ {
+  title: 'SQL',
+  iconType: SQLIcon,
  },
 ]
 
@@ -81,6 +103,25 @@ const hobbies = [
 ]
 
 export const AboutSection = () => {
+  const constraintRef = useRef(null);
+  const [currentImage, setCurrentImage] = useState(images[0]);
+  const [fade, setFade] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImage((prevImage) => {
+          const currentIndex = images.indexOf(prevImage);
+          const nextIndex = (currentIndex + 1) % images.length;
+          return images[nextIndex];
+        });
+        setFade(true); 
+      }, 1000); 
+    }, 4000); 
+
+    return () => clearInterval(interval); 
+  }, []);
   return (
     <div id="AboutMe" className="py-20 lg:py-28">
       <div className="container">
@@ -90,34 +131,36 @@ export const AboutSection = () => {
             <Card className="h-[320px] md:col-span-2 lg:col-span-1">
               <CardHeader title={"Leitura"} description={"Explore os livros que moldam quem eu sou."}/>
               <div className="w-40 mx-auto mt-2 md:mt-0">
-                <Image src={bookImage} alt="Capa do Livro"/>
+                <Image className={`transition-opacity duration-1000 ease-in-out ${fade ? 'opacity-100' : 'opacity-0'}`} src={currentImage} alt="Capa do Livro"/>
               </div>
             </Card>
             <Card className="h-[320px] md:col-span-3 lg:col-span-2">
             <CardHeader className="" title={"Tecnologias"} description={"Explore as tecnologias e ferramentas que utilizo para criar experiências digitais."}/>
-              <ToolboxItems className="" items={toolboxItems} />
-              <ToolboxItems className="mt-6" itemsWrapperClassName="-translate-x-1/2" items={toolboxItems} />
+              <ToolboxItems className="" items={toolboxItems} itemsWrapperClassName="animate-move-left [animation-duration:30s]"/>
+              <ToolboxItems className="mt-6" itemsWrapperClassName="-translate-x-1/2 animate-move-right [animation-duration:15s]" items={toolboxItems} />
             </Card>
           </div>
           <div className="grid gap-8 grid-cols-1 md:grid-cols-5 lg:grid-cols-3">
             <Card className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2">
             <CardHeader title={"Por Trás do Código"} description={"Explore meus interesses e hobbies."} className="px-6 pt-6"/>  
-              <div className="relative flex-1">
+              <div className="relative flex-1" ref={constraintRef}>
                 {hobbies.map(hobby => (
-                  <div key={hobby.title} className="inline-flex items-center gap-2 px-6 bg-gradient-to-r from-emerald-300 to-sky-400 rounded-full py-1.5 absolute"
+                  <motion.div key={hobby.title} className="inline-flex items-center gap-2 px-6 bg-gradient-to-r from-emerald-300 to-sky-400 rounded-full py-1.5 absolute"
                   style={{
                     left: hobby.left,
                     top: hobby.top,
-                  }}>
+                  }} drag dragConstraints = {constraintRef}>
                     <span className="font-medium text-gray-950">{hobby.title}</span>
                     <span>{hobby.emoji}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </Card>
             <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1">
               <Image className="h-full w-full object-cover object-left-top" src={mapImage} alt="mapa" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-gray-950/30">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-gray-950/30">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-20 animate-ping [animation-duration:1.5s]"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-10 "></div>
                 <Image className="size-20" src={smileMemoji} alt="memoji sorrindo"/>
               </div>
             </Card>

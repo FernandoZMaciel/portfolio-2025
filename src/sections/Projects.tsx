@@ -35,7 +35,7 @@ const portfolioProjects = [
 
 export const ProjectsSection = () => {
   return (
-    <section className="pb-16 lg:py-24">
+    <section id="Projects" className="pb-16 lg:py-24">
       <div className="container">
         <SectionHeader title={"Resultados Reais"} eyebrow={"Projetos em Destaque"} description={"Veja como eu transformei conceitos em experiências digitais"}/>
 

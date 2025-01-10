@@ -13,10 +13,10 @@ export const HeroSection = () => {
     <div className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip ">
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)] -z-10">
         <div className="absolute inset-0 -z-30 opacity-5" style={{backgroundImage: `url(${grainImage.src})`}}></div>
-        <div className="size-[720px] hero-ring"></div>
-        <div className="size-[920px] hero-ring"></div>
-        <div className="size-[1120px] hero-ring"></div>
-        <div className="size-[1320px] hero-ring"></div>
+        <div className="size-[120px] md:size-[620px]  lg:size-[620px] hero-ring"></div>
+        <div className="size-[320px] md:size-[820px]  lg:size-[820px] hero-ring"></div>
+        <div className="size-[620px] md:size-[1120px] lg:size-[1120px] hero-ring"></div>
+        <div className="size-[820px] md:size-[1320px] lg:size-[1320px] hero-ring"></div>
         <HeroOrbit size={430} rotation={-14} shouldOrbit orbitDuration="30s" shouldSpin spinDuration="3s">
           <SparkleIcon className="size-8 text-emerald-300/20"/>
         </HeroOrbit>
